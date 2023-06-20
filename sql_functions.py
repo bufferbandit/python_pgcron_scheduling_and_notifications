@@ -64,25 +64,3 @@ def unschedule_task(schedule_name):
 		schedule_name=schedule_name
 	))
 	return res
-
-
-def create_job_run_details_trigger(table_name="job_run_details"):
-	query = sql.SQL("""
-		SELECT 
-			jobid, 
-			runid, 
-			job_pid, 
-			database, 
-			username, 
-			command, 
-			status, 
-			return_message, 
-			start_time, 
-			end_time 
-		FROM {table_name};
-	""")
-	res = conn.execute(query.format(
-		table_name=sql.Identifier(table_name)
-	))
-	print(res)
-	return res
